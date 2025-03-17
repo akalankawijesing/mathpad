@@ -4,10 +4,11 @@ export async function POST(req: Request) {
   try {
     const reqBody = await req.json();
     const { image, dictOfVars } = reqBody;
+    const apiKey = process.env.GOOGLE_GEMI_API;
 
     // Initialize Google Generative AI
     const genAI = new GoogleGenerativeAI(
-      "AIzaSyCSOCZgOGh9eL5c0rd6nQPf8GN0fzKBrzM"
+      apiKey
     );
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const dictOfVarsStr = JSON.stringify(dictOfVars);
